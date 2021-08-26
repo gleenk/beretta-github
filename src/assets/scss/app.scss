@@ -1,0 +1,126 @@
+@import "~bulma/sass/utilities/initial-variables";
+@import "~bulma/sass/utilities/functions";
+// 1. Set your own initial variables and derived 
+//    variables in _variables.scss
+@import "variables";
+
+// 2. Setup your Custom Colors
+$linkedin: #0077b5;
+$linkedin-invert: findColorInvert($linkedin);
+$twitter: #55acee;
+$twitter-invert: findColorInvert($twitter);
+$github: #333;
+$github-invert: findColorInvert($github);
+
+@import "~bulma/sass/utilities/derived-variables";
+
+// 3. Add new color variables to the color map.
+$addColors: (
+  "twitter":($twitter, $twitter-invert),
+  "linkedin": ($linkedin, $linkedin-invert),
+  "github": ($github, $github-invert)
+);
+$colors: map-merge($colors, $addColors);
+
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+
+// 4. Provide custom buefy overrides and site styles here
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+html,body, #app{
+  height: 100%;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.button{
+  font-family: 'Poppins', sans-serif;
+}
+.button.is-primary {
+  border: 2px solid var(--app-color2);
+  &.is-inverted{
+    &:hover{
+      background-color: var(--app-color2);
+      color: $white;
+    }
+  }
+  &.is-active {
+    background-color: var(--app-color2);
+      color: $white;
+  }
+
+}
+.button{
+  font-weight: 600;
+}
+
+.products-grid {
+  display: grid;
+  grid-gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+.main-container {
+  padding: 60px 0;
+}
+.container.is-fluid{
+  padding-right:2rem;
+  padding-left:2rem;
+}
+.icon-button{
+  padding: 0;
+  height: 2rem;
+  width: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: $grey;
+  cursor: pointer;
+  .fa-shopping-cart{
+    transform: translateY(1px);
+    max-width: 85%;
+  }
+  &.is-small{
+    border-radius: 500px;
+    font-size: .85rem;
+  }
+}
+
+.bottombar{
+  width: 100%;
+  position: fixed;
+  bottom:0;
+  left: 0;
+  background-color: white;
+  height: 60px;
+  z-index: 99;
+  box-shadow: 0px 0px 50px #ddd;
+  .container{
+      height: 60px;
+  }
+}
+
+.button.is-primary:not(.is-inverted), .button.is-primary.is-active, button.is-primary.is-inverted:hover {
+  //background: linear-gradient(135deg, #a2670d 0%,#6e4910 100%);
+  background: linear-gradient(135deg, var(--app-color1) 0%,var(--app-color2) 100%);
+
+}
+.cart-total{
+  text-align: right;
+  span{
+      display: block;
+      font-size: 1.5rem;
+      color: $darkred;
+      font-weight: 700;
+  }
+}
+.footer{
+  padding: 2rem;
+  //background-color: var(--app-bgcolor);
+  color: var(--app-color2);
+  font-size: .75rem;
+}
+a{
+  color: var(--app-color2);
+}
